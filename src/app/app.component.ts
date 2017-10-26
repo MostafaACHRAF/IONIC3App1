@@ -3,13 +3,22 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { TabsPage } from '../pages/tabs/tabs';
+import { GalleryPage } from '../pages/gallery/gallery';
+import { PlacesPage } from '../pages/places/places';
+import { MeteoPage } from '../pages/meteo/meteo';
+import { HomePage } from '../pages/home/home';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+  rootPage:any = HomePage;
+
+  menu = [
+    {title: 'My Gallery', component: GalleryPage},
+    {title: 'Palaces', component: PlacesPage},
+    {title: 'Meteo', component: MeteoPage}
+  ];
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -19,4 +28,9 @@ export class MyApp {
       splashScreen.hide();
     });
   }
+
+  onPage(m) {
+    this.rootPage = m.component;
+  }
+  
 }

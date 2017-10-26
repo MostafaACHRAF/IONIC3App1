@@ -1,1 +1,14 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content] = "content">
+    <ion-header color="primary">
+        <ion-toolbar color="primary">
+            <ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <button menuClose="" ion-item="" *ngFor="let m of menu" (click)="onPage(m)" > {{ m.title }} </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav #content [root]="rootPage"></ion-nav>
