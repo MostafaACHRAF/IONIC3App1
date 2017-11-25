@@ -20,16 +20,49 @@
   <div padding>
     <ion-item>
       <ion-label>Mot clee :</ion-label>
-      <ion-input type="text" [(ngModel)] = "motClee"></ion-input>      
+      <ion-input type="text" [(ngModel)] = "motClee"></ion-input>
     </ion-item>
     <button ion-button (click)="onSearch()">Chercher</button>
   </div>
 
   <ion-card *ngFor="let img of images?.hits">
-    <ion-card-header></ion-card-header>
+    <ion-card-header>
+      <ion-item>
+        <ion-avatar>
+          <img src="{{img.userImageURL}}" alt="" />
+        </ion-avatar>
+        <h3>{{img.user}}</h3>
+        <p>{{img.user_id}}</p>
+      </ion-item>
+    </ion-card-header>
     <ion-card-content>
       <p>{{ img.tags }}</p>
-      <img src="{{ img.previewURL }}" />
+      <img src="{{ img.previewURL }}" (click)="onDetailImg(img)" />
+      <p>{{img.imageHeight}}x{{img.imageWidth}}</p>
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-left clearInput small>
+            <ion-icon name="thumbs-up"></ion-icon>
+            <div>{{img.likes}} Likes</div>
+          </button>
+        </ion-col>
+
+        <ion-col>
+          <button ion-button icon-left clearInput small>
+            <ion-icon name="text"></ion-icon>
+            <div>{{img.comments}} Comments</div>
+          </button>
+        </ion-col>
+
+        <ion-col text-center align-items-center>
+          <ion-note>{{img.favorites}} Favorites</ion-note>
+        </ion-col>
+
+      </ion-row>
     </ion-card-content>
   </ion-card>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

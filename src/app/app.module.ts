@@ -11,6 +11,8 @@ import { MeteoPage } from '../pages/meteo/meteo';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
+import {GalleryService} from "../services/gallery.service";
+import {DetailImgPage} from "../pages/detail-img/detail-img";
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { HomePage } from '../pages/home/home';
     GalleryPage,
     PlacesPage,
     MeteoPage,
-    HomePage
+    HomePage,
+    DetailImgPage
   ],
   imports: [
     BrowserModule,
@@ -31,10 +34,11 @@ import { HomePage } from '../pages/home/home';
     GalleryPage,
     PlacesPage,
     MeteoPage,
-    HomePage
+    HomePage,
+    DetailImgPage
   ],
   providers: [
-    StatusBar,
+    StatusBar, GalleryService,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
