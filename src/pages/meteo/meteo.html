@@ -17,5 +17,23 @@
 
 
 <ion-content padding>
+  <form #f="ngForm" (ngSubmit)="onGetMeteo(f.value)">
+    <ion-item>
+      <ion-label>Ville : </ion-label>
+      <ion-input name="ville" type="text" ngModel required></ion-input>
+    </ion-item>
+    <button ion-button type="submit" [disabled]="!f.valid">Search</button>
+  </form>
 
+  <ion-list>
+    <ion-item *ngFor="let m of meteo?.list">
+      <ion-avatar item-start>
+        <img src="assets/imgs/{{m.weather[0].main}}.png" alt="" />
+      </ion-avatar>
+      <h2>Date : Le {{m.dt * 1000 | date:'dd/MM - HH:mm'}}</h2>
+      <p>Temperature : <b>{{m.main.temp - 273.15}} °C</b></p>
+      <p>Pression : <b>{{m.main.pressure}}</b></p>
+      <p>Humidity : <b>{{m.main.humidity}}</b></p>
+    </ion-item>
+  </ion-list>
 </ion-content>
